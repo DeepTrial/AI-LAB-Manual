@@ -10,31 +10,31 @@
     - [ ] dbscan
 
 - 降维算法
-    - [] 聚类
+    - [ ] 聚类
 
 - 高级机器学习模型
-    - [] xgboost
-    - [] lightgbm
+    - [ ] xgboost
+    - [ ] lightgbm
 
 ## 深度学习类
 
 - 网络结构
-    - [] CNN
-    - [] LSTM/GRU
-    - [] VAE/AE
-    - [] Attention
+    - [ ] CNN
+    - [ ] LSTM/GRU
+    - [ ] VAE/AE
+    - [ ] Attention
 
 - 模型设计
-    - [] BERT
-    - [] Transform
-    - [] 推荐算法（待明确）
+    - [ ] BERT
+    - [ ] Transform
+    - [ ] 推荐算法（待明确）
 
 ## 开发语言类
 
 - Python
-    - [] pandas
-    - [] numpy
-    - [] tensorflow
+    - [ ] pandas
+    - [ ] numpy
+    - [ ] tensorflow
 
 - C++
-    - [] 多线程
+    - [ ] 多线程
