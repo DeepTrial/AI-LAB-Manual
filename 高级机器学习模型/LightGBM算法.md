@@ -10,7 +10,18 @@
 
 
 
-## 直方图方法
+## 1.基于直方图的方法
+
+### 1.1直方图算法的思想
+
+直方图算法的基本思想是将连续的特征离散化为 k 个离散特征，同时构造一个宽度为 k 的直方图用于统计信息（含有 k 个 bin）。利用直方图算法我们无需遍历数据，只需要遍历 k 个 bin 即可找到最佳分裂点。
+
+我们知道特征离散化的具有很多优点，如存储方便、运算更快、鲁棒性强、模型更加稳定等等。对于直方图算法来说最直接的有以下两个优点（以 k=256 为例）：
+
+- **内存占用更小：**XGBoost 需要用 32 位的浮点数去存储特征值，并用 32 位的整形去存储索引，而 LightGBM 只需要用 8 位去存储直方图，相当于减少了 1/8；
+- **计算代价更小：**计算特征分裂增益时，XGBoost 需要遍历一次数据找到最佳分裂点，而 LightGBM 只需要遍历一次 k 次，直接将时间复杂度从 ![[公式]](https://www.zhihu.com/equation?tex=+O%28%5C%23data++%2A+%5C%23feature%29+) 降低到 ![[公式]](https://www.zhihu.com/equation?tex=+O%28k++%2A+%5C%23feature%29+) ，而我们知道 ![[公式]](https://www.zhihu.com/equation?tex=%5C%23data+%3E%3E+k) 。
+
+
 
 
 
@@ -26,4 +37,6 @@
 
 1. https://blog.csdn.net/qq_24519677/article/details/82811215
 2. https://blog.csdn.net/maqunfi/article/details/82219999
+3. https://zhuanlan.zhihu.com/p/87885678
+4. https://blog.csdn.net/anshuai_aw1/article/details/83040541
 
