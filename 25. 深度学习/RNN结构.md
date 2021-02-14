@@ -8,6 +8,29 @@
 
 ## 2. RNN结构
 
-![preview](../img/v2-3884f344d71e92d70ec3c44d2795141f_r.jpg)
+<img src="../img/v2-f6d91e2e4b918295023bb490793057ef_r.jpg" alt="v2-f6d91e2e4b918295023bb490793057ef_r" style="zoom: 33%;" />
 
-RNN的结构很简单，包括输入层、单层隐藏层、输出层
+RNN的结构很简单，包括输入$X_t$、RNN层$A$、输出$h_t$,$t$表示时间序列。RNN层以以当前时刻的输入$X$和上一时刻RNN层的输出为输入，如果将上述网络结构展开，则结构更加明显：
+
+![preview](../img/v2-b0326c567c7ea8ccea0f66a9bcbee133_r.jpg)
+
+这种像是链状的网络结构表明RNN和序列以及列表有着天然的联系，他们是处理这些序列数据的天然的神经网络。而且很明显我们可以看出，输入输出的序列是具有相同的时间长度的，其中的每一个权值都是共享的（都是相同的A，只是A的输入有所区别）
+
+## 3. RNN计算过程
+
+### 3.1 前向传播
+
+![img](../img/v2-036d9f3729c7ddadc6e1b9561be1aea7_720w.png)
+
+RNN的前向传播计算过程如下：
+$$
+\begin{align}
+s_t&=tanh(Ws_{t-1}+Ux_t)\\
+o_t&=sigmoid(Vs_i)
+\end{align}
+$$
+
+
+### 3.2 反向传播
+
+![img](../img/v2-3bc30e9a2d740fff417e47dcf7d636bc_720w.png)
