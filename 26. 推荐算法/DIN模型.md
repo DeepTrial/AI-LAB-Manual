@@ -66,23 +66,25 @@ PRelu的计算过程如下：
 
 ## 实验对比
 
-- 作者选择AUC评价模型性能
+- 作者选择用户加权AUC评价模型性能，该指标能更加贴近线上场景。AUC本身是CTR预测任务中常用的评价指标，能够很好得度量推荐顺序。DIN论文里，利用用户的曝光数对uAUC进行加权，可以很好地衡量线上性能：
 
-- 作者在公共数据集上对比了下列模型的性能
+  ![image-20210330115127589](../img/image-20210330115127589.png)
 
-  - BASE：直接实验点击数据训练CVR预测模型
-  - AMAN：从unclicked样本中随机抽样作为负例加入点击集合
-  - OVERSAMPLING：对点击集中的正例（转化样本）过采样
-  - UNBIAS：使用rejection sampling
-  - DIVISION：分别训练CTR和CVCTR，相除得到pCVR
-  - ESMM-NS：ESMM结构中CVR与CTR部分不share embedding
+  同时还是用RelaImpr度量各个模型相对于base model性能提升得百分比：
+
+  ![image-20210330115239529](../img/image-20210330115239529.png)
 
   
 
-  ![image-20210325153504091](../img/image-20210325153504091.png)
+  部分数据集上的实验性能如图所示：
+
+  ![image-20210330115851387](../img/image-20210330115851387.png)
+
+  
+
+  关于mini-batch aware regularization的验证实验：
+
+  ![image-20210330115931347](../img/image-20210330115931347.png)
 
 
 
-作者通过采样的方式表明Data Sparsity问题对模型性能的影响:
-
-![image-20210325153705747](../img/image-20210325153705747.png)
