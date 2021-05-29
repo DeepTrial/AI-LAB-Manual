@@ -12,7 +12,7 @@
 
 - 使用快捷键win+r呼出运行，输入命令winver，查看当前内核版本，我个人的版本信息如下，当内核版本高于20150后可继续后续步骤。
 
-  ![image-20210525192448298](D:\Projects\AI-LAB-Manual\img\image-20210525192448298.png)
+  ![image-20210525192448298](..\.\img\image-20210525192448298.png)
 
 **如果没有安装预览版更新并切换到Dev渠道，在后续安装完后会提示cannot load libcuda.so.1**
 
@@ -67,15 +67,23 @@ wsl --set-default-version 2
    ubuntu中可使用apt-get安装cuda
 
    ```
-   sudo apt-get install cuda
+   wget https://developer.download.nvidia.com/compute/cuda/11.3.1/local_installers/cuda_11.3.1_465.19.01_linux.run
+   sudo sh cuda_11.3.1_465.19.01_linux.run
    ```
 
-   然后在官网下载对于版本的cudnn，运行以下代码完成cudnn的安装(根据自身版本修改路径)
+   编辑```~/.bashrc```，将以下两行添加到文件末尾：
 
    ```
-   tar xaf ~/Download/cudnn-10.0-linux-x64-v7.6.5.32.tgz
-   sudo cp -Pv include/cudnn.h /usr/local/cuda-10.0/include/
-   sudo cp -Pv lib64/* /usr/local/cuda-10.0/lib64/
+   export PATH=/usr/local/cuda-11.3/bin${PATH:+:${PATH}}
+   export LD_LIBRARY_PATH=/usr/local/cuda-11.3/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+   ```
+
+   然后在[官网]([cuDNN Download | NVIDIA Developer](https://developer.nvidia.com/rdp/cudnn-download))下载对于版本的cudnn，运行以下代码完成cudnn的安装(根据自身版本修改路径)
+
+   ```
+   tar xaf cudnn-11.2-linux-x64-v8.1.1.33.tgz
+   sudo cp -Pv cuda/include/cudnn.h /usr/local/cuda-11.3/include/
+   sudo cp -Pv cuda/lib64/* /usr/local/cuda-11.3/lib64/
    ```
 
 3. 配置具体的GPU软件
@@ -87,4 +95,20 @@ wsl --set-default-version 2
 [windows10 + wsl2,使用NVIDIA gpu_XXXXX的专栏-CSDN博客](https://blog.csdn.net/Tyronne/article/details/109319058)
 
 [Enable NVIDIA CUDA in WSL 2 - Win32 apps | Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/direct3d12/gpu-cuda-in-wsl)
+
+## 附录WSL的jupyter配置
+
+- 生产jupyter配置文件
+
+  ```
+  jupyter notebook --generate-config
+  ```
+
+- 修改配置文件
+
+  ```
+  vim ~/.jupyter/jupyter_notebook_config.py
+  ```
+
+  查找到```c.NotebookApp.use_redirect_file```项，将其改为False(vim的查找快捷键按/，然后输入查找内容回车)
 
